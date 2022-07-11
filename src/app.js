@@ -1,12 +1,13 @@
-// import AppHeader from "./components/layout/header";
-import TodosComponents from "./components/todos/Todos";
+import NotesComponents from "./components/notes/Notes";
+
+
+
 
 
 export default function App(){
     return (
         <>
-        {/* <AppHeader></AppHeader> */}
-        <TodosComponents></TodosComponents>
+        <NotesComponents></NotesComponents>
         </>
     )
 }

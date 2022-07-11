@@ -1,0 +1,20 @@
+.form-container{
+    padding: 20px 0 20px 450px;
+    display: flex;
+    width: 25%;
+    justify-content: space-around;
+}
+
+.form-container > input{
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.form-container > input::placeholder{
+    font-size: 16px;
+}
+
+.form-container > input > p{
+    font-size: 24px;
+}
+
