@@ -2,7 +2,6 @@ import React from "react";
 import NoteCreate from "./note-create/note-create";
 import NotesList from "./note-list/note-list";
 
-
 const notes=[
     {
         id:1,
@@ -39,23 +38,15 @@ export default class NotesComponents extends React.Component{
                 <NoteCreate cb={this.onNoteCreate}></NoteCreate>
             </div>
             <NotesList notes={this.state.notes} edit={this.onNoteEdit}></NotesList>
-            </>
-            
-            
+            </>   
         )
     }
-
 
     onNoteCreate(note){
         this.setState({...this.state, notes:[...this.state.notes , {...note, id: Date.now()}], isCreate:false}) 
     }
 
     onNoteEdit(note){
-        this.setState({...this.state, currentNote: note, isEdit:true})
-        if(this.state.isEdit){
-           console.log('input')
-    }else{
-        console.log('click')
-    }
+         this.setState({...this.state, currentNote: note, isEdit:true})
     }
 }
