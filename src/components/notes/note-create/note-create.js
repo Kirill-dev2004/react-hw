@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AppButton from "../../../shared-components/button";
 import AppInput from "../../../shared-components/input-header";
-
 import './input-header.css'
 
 
@@ -12,6 +11,7 @@ export default function NoteCreate({cb}){
 
    function setProperty(e){
        setstate({title: e.target.value}) 
+       console.log(state)
     }
 
     return <>

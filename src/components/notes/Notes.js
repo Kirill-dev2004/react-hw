@@ -47,6 +47,7 @@ export default class NotesComponents extends React.Component{
     }
 
     onNoteEdit(note){
-         this.setState({...this.state, currentNote: note, isEdit:true})
+         this.setState({...this.state, isEdit:true, notes: [...this.state.notes.map((n) => n.id === note.id ? note : n)]})
+         
     }
 }
