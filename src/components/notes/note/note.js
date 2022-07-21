@@ -1,6 +1,7 @@
 
 
 import { useState } from 'react'
+import AppDelete from '../../../shared-components/delete-cross'
 import AppInput from '../../../shared-components/input-header'
 import './note-styles.css'
 
@@ -17,6 +18,7 @@ export default function Note({note, edit}){
                 {
                     isEdit ? <AppInput onBlur={() => {setEditMode(false); edit(editedNote)}}  value={editedNote.title} onChange={setProperty}></AppInput> : <div>Title: {note.title ? note.title: "There is no note"}</div>
                 }
+                <AppDelete ></AppDelete>
             </div>
     </>
 }

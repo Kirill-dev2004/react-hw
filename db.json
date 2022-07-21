@@ -1,10 +1,8 @@
 {
   "notes": [
     {
+      "id": 1,
       "title": "first todo"
-    },
-    {
-      "title": "first3 todo"
     }
   ]
 }

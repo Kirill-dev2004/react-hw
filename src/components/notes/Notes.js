@@ -5,30 +5,37 @@ import { useState, useEffect } from "react";
 import api from "../../shared-components/api/api"
 
 export default function NotesComponents(){
-    const initialState = {
-        notes: [],
-        newNote: null,
-        currentNote: null,
+    // const initialState = {
+    //     notes: [],
+    //     newNote: null,
+    //     currentNote: null,
 
-    }
+    // }
 
-const [state, setstate] = useState(initialState)
+const [notes, setNotes] = useState([])
+const [newNote, setNewNote] = useState(null)
 
 useEffect(() => {
-    if(!state.newNote){
-        api.get().then((r) => setstate({notes: r.data}))
-    }else{
-        api.post('', state.newNote).then((r) => setstate(...state,{notes: [...state.notes, r.data], newNote: null}))
-    }
-        
-}, [state.notes])
+    console.log("eee")
+        api.get().then((r) => setNotes(r.data))
+}, [])
+
+useEffect(() => {
+    if(newNote){
+        api.post('', newNote).then((r) => {setNewNote(null); setNotes([...notes, r.data])})
+    }  
+}, [newNote])
 
     const onNoteCreate = (note) =>{
-        setstate({ ...state, newNote: note}) 
+        setNewNote(note) 
     }
 
     const onNoteEdit =(note) => {
-        setstate({notes: [...state.notes.map((n) => n.id === note.id ? note : n)]})         
+        setNotes({notes: [...notes.notes.map((n) => n.id === note.id ? note : n)]})         
+    }
+
+    const onNoteDelete = (id) => {
+        // this.setState({...this.state, todos: this.state.todos.filter(t => t.id !== id)})
     }
 
     return (
@@ -36,10 +43,12 @@ useEffect(() => {
         <div>
             <NoteCreate cb={onNoteCreate}></NoteCreate>
         </div>
-        <NotesList notes={state.notes} edit={onNoteEdit}></NotesList>
+            <NotesList notes={notes} edit={onNoteEdit}></NotesList>
         </>   
     )
     }
+
+    // edit={onNoteEdit}
 
 
 
