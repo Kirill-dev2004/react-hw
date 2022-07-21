@@ -5,7 +5,7 @@ import AppDelete from '../../../shared-components/delete-cross'
 import AppInput from '../../../shared-components/input-header'
 import './note-styles.css'
 
-export default function Note({note, edit}){
+export default function Note({note, edit, onDelete}){
     const [isEdit, setEditMode] = useState(false)
     const [editedNote, setNote] = useState(note)
 
@@ -14,11 +14,11 @@ export default function Note({note, edit}){
      }
 
     return <>   
-            <div onClick={() => setEditMode(true)} className="note-item">
+            <div className="note-item">
                 {
-                    isEdit ? <AppInput onBlur={() => {setEditMode(false); edit(editedNote)}}  value={editedNote.title} onChange={setProperty}></AppInput> : <div>Title: {note.title ? note.title: "There is no note"}</div>
+                    isEdit ? <AppInput onBlur={() => {setEditMode(false); edit(editedNote)}}  value={editedNote.title} onChange={setProperty}></AppInput> : <div onClick={() => setEditMode(true)}>Title: {note.title ? note.title: "There is no note"}</div>
                 }
-                <AppDelete ></AppDelete>
+                <AppDelete cb={onDelete}></AppDelete>
             </div>
     </>
 }
