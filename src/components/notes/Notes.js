@@ -16,7 +16,6 @@ const getNotes = () => {
 }
 
 useEffect(() => {
-    // api.get().then((r) => setNotes(r.data))
     getNotes()
 }, [])
 
@@ -29,18 +28,14 @@ useEffect(() => {
 useEffect(() => {
     if(deleteNote){
         api.delete(`http://localhost:3000/notes/${deleteNote}`).then((r) => (r.data), getNotes())
-
     }
 }, [deleteNote])
 
 useEffect(() => {
     if(editNote){
-        console.log(editNote.id)
-        api.put(`http://localhost:3000/notes/${editNote.id}`, editNote).then((r) => console.log(r.data))
+        api.put(`http://localhost:3000/notes/${editNote.id}`, editNote).then((r) => setEditNote(notes.map((n) => n.id === editNote.id ? {...r.data} : n)), getNotes())
     }
 }, [editNote])
-
-// setEditNote(notes.map((n) => n.id === editNote.id ? {...r.data} : n))
 
 const onNoteCreate = (note) =>{
     setNewNote(note) 
@@ -52,9 +47,7 @@ const onNoteDelete = (id) => {
 }
 
 const onNoteEdit = (note) => {
-        // setNotes({notes: [...notes.notes.map((n) => n.id === note.id ? note : n)]})   
-        setEditNote(note)  
-        console.log(note) 
+    setEditNote(note)  
 }
 
 return (
