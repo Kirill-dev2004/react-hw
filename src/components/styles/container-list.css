@@ -1,0 +1,7 @@
+.container-list{
+    border: 2px solid black;
+    height: 500px;
+    width: 900px;
+    overflow: auto;
+    margin: 0 auto;
+}
